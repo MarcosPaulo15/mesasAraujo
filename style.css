@@ -1,0 +1,69 @@
+body{
+    background-color: white;
+}
+nav{
+    position: absolute;
+    background-color: #d1cdcd;
+    box-shadow: 0 20px 35px rgb(107, 107, 107);
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    width: 300px;
+    overflow: hidden;
+    transition: width 0.2s linear;
+    box-shadow: 0 20px 35px;
+}
+.box{
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divKey{
+    margin-top: 15%;
+}
+
+.btnentry{
+    margin-top: 15%;
+    margin-right: 25%;
+    margin-left: 15% ;
+}
+.empresa{
+    color: red;
+}
+
+.senha{
+    margin-top: 15px;
+}
+
+.btns{
+    margin-top: 15px;
+}
+
+.divnome{
+    margin-bottom: 15px;
+}
+
+.borda{
+     margin: 0;
+      padding: 0;
+      height: 120vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+.fds{
+    height: min-content;
+}
