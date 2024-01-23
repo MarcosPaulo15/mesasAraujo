@@ -1,6 +1,5 @@
 <?php
-
-include_once('configClass.php');
+require_once('..\helper\configClass.php');
 session_start();
 
 $id = $_GET['id'];
@@ -12,7 +11,7 @@ $instance = new configClass();
 $valInse = $instance->delete($query);
 
 if($valInse){
-    header('location: principal.php');
+    header('location: ../view/list.php');
 }
 else{
     echo "<script> alert('Falha ao excluir o item')</script>";

@@ -1,16 +1,11 @@
 <?php
-include_once ('configClass.php');
-include_once('config.php');
+require_once('C:\xampp\htdocs\mesas araujo\app\helper\configClass.php');
+require_once('C:\xampp\htdocs\mesas araujo\app\helper\config.php');
+require_once('C:\xampp\htdocs\mesas araujo\app\Model\MdNewOrder.php');
 $id = $_GET['id'];
-$query = "SELECT * FROM PEDIDO WHERE ID = $id";
-$result = mysqli_query($con, $query);
 
-$note = mysqli_fetch_array($result);
-$jm = $note ['JOGO']; 
-$cad = $note['CADEIRA'];
-$mes = $note['MESA'];
-$pupu = $note['PULA'];
-$dt = $note['DATA'];
+$inst = new MdNewOrder();
+$inst->selectInfo($id);
 
 if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcadeira'])){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,12 +13,11 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
         if(isset($_POST["btn"])){
             $btn = $_POST["btn"];
 
-            $jogo = isset($_POST['edtjogo']) ? $_POST['edtjogo'] : 'NULL';
-            $mesa = isset($_POST['edtmesa']) ? $_POST['edtmesa'] : 'NULL';
-            $cadeira = isset($_POST['edtcadeira']) ? $_POST['edtcadeira'] : 'NULL';
-            $data = isset($_POST['edtdata']) ? $_POST['edtdata'] : 'NULL';
-            $pula = isset($_POST['ckbpula']) ? 1 : 0;
-           
+            $inst->setJogo(isset($_POST['edtjogo']) ? $_POST['edtjogo'] : 'NULL');
+            $inst->setMesa(isset($_POST['edtmesa']) ? $_POST['edtmesa'] : 'NULL');
+            $inst->setCadeira(isset($_POST['edtcadeira']) ? $_POST['edtcadeira'] : 'NULL');
+            $inst->setData(isset($_POST['edtdata']) ? $_POST['edtdata'] : 'NULL');
+            $inst->setPula(isset($_POST['ckbpula']) ? 1 : 0);   
            
             switch($btn){
                 case "Adicionar":
@@ -32,16 +26,9 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
                     strlen($_POST['edtcadeira']) == 0){
                         echo 'todos os campos vazios, favor preencher pelo menos um campo!';
                     }
-                    else{
-
-                        $query = "UPDATE PEDIDO SET JOGO = $jogo, MESA = $mesa, CADEIRA = $cadeira, PULA = $pula, DATA = '$data' WHERE ID = $id";
-                        //echo $query;
-                        
-                        $instance = new configClass();
+                    else{                        
             
-                        $valInse = $instance->update($query);
-            
-                        if($valInse){
+                        if($inst->Update($id)){
                             header ('location: principal.php');
                         }
                         else{
@@ -68,31 +55,45 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="stlPrinc.css">
+    <link rel="stylesheet" href="../Style/stlPrinc.css">
     <title>Principal</title>
 </head>
 <body>
 
-    <nav class="nvmenu">
+<nav class="nvmenu">
         <ul class="ulgeral">
             <li class="icPrinc">
-                <a href="principal.php">
+                <a href="../View/principal.php">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Principal</span>
                 </a>                
             </li>
 
             <li class="icList">
-                <a href="#">
+                <a href="../View/list.php">
                     <i class="fas fa-solid fa-list"></i>
                     <span class="nav-item">Lista</span>
                 </a>                
             </li>
             
             <li class="icAdd">
-                <a href="newOrder.php">
+                <a href="../View/newOrder.php">
                     <i class=" fas fa-solid fa-plus"></i>
                     <span class="nav-item">Novo aluguel</span>
+                </a>                
+            </li>
+
+            <li class="icConfig">
+                <a href="../View/config.php">
+                    <i class="fas fa-solid fa-gear"></i>
+                    <span class="nav-item">Configuração</span>
+                </a>                
+            </li>
+
+            <li class="icout">
+                <a href="../index.php">
+                    <i class="fas fa-solid fa-door-open"></i>
+                    <span class="nav-item">Sair</span>
                 </a>                
             </li>
         </ul>
@@ -107,34 +108,32 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
 
                     <div class="dvjmesa">
                         <label>Jogo de mesas:</label>
-                        <input type="number" name="edtjogo" value="<?php echo $jm; ?>">
+                        <input type="number" name="edtjogo" value="<?php echo $inst->getJogo(); ?>">
                     </div>
 
                     <div>
                         <label>Cadeiras:</label>
-                        <input type="number" name="edtcadeira" value="<?php echo $cad; ?>">
+                        <input type="number" name="edtcadeira" value="<?php echo $inst->getCadeira(); ?>">
                     </div>
 
                     <div class="dvmesas">
                         <label>Mesas:</label>
-                        <input type="number" name="edtmesa" value="<?php echo $mes; ?>">
+                        <input type="number" name="edtmesa" value="<?php echo $inst->getMesa(); ?>">
                     </div>
 
                     <div class="dvdate">
                         <label for=""> Data:</label>
-                        <input type="date" name="edtdata" value="<?php echo $dt; ?>">
+                        <input type="date" name="edtdata" value="<?php echo $inst->getData(); ?>">
                     </div>
 
                     <div>
                         <label > Pula - Pula:</label>
-                        <input type="checkbox" name="ckbpula" <?php echo ($pupu) ? 'checked' : '';?>">
+                        <input type="checkbox" name="ckbpula" <?php echo ($inst->getPula()) ? 'checked' : '';?>">
                     </div>
 
                     <div class="dvbtn">
-                        <i class="fa-solid fa-check"></i>
                         <input type="submit" value="Adicionar" class="btnadd" name="btn">
                         <input type="submit" value="cancelar" class="btncancel" name="btn">
-                        <i class="fa-solid fa-xmark"></i>
                     </div>
                 </div>
             </center>            

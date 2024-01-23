@@ -6,6 +6,11 @@ public $password = "";
 public $servidor = "localhost";
 public $basededatos = "conversa";
 
+public function connection(){
+    $con = mysqli_connect($this->servidor, $this->usuario, $this->password, $this->basededatos) or die("Falha ao conectar no servidor");
+    return $con;
+}
+
 public function insert($query){
 
     $con = mysqli_connect($this->servidor, $this->usuario, $this->password, $this->basededatos) or die("Falha ao conectar no servidor");
