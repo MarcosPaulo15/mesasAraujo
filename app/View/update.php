@@ -2,10 +2,20 @@
 require_once('C:\xampp\htdocs\mesas araujo\app\helper\configClass.php');
 require_once('C:\xampp\htdocs\mesas araujo\app\helper\config.php');
 require_once('C:\xampp\htdocs\mesas araujo\app\Model\MdNewOrder.php');
+require_once('..\MODEL\MdClient.php');
 $id = $_GET['id'];
 
+
 $inst = new MdNewOrder();
+$teste = new MdClient();
+
 $inst->selectInfo($id);
+
+$result = $teste->selectClientUpd($id);
+$note= mysqli_fetch_array($result);
+
+$nome = $note['NOME'];
+$telefone = $note['TELEFONE'];
 
 if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcadeira'])){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -75,13 +85,20 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
                     <span class="nav-item">Lista</span>
                 </a>                
             </li>
+
+            <li class="icPerson">
+                <a href="../View/person.php">
+                <i class="fas fa-solid fa-id-card"></i>
+                    <span class="nav-item">Cliente</span>
+                </a>                
+            </li>
             
-            <li class="icAdd">
-                <a href="../View/newOrder.php">
+            <li class="icOrder">
+                <a href="../View/clientList.php">
                     <i class=" fas fa-solid fa-plus"></i>
                     <span class="nav-item">Novo aluguel</span>
                 </a>                
-            </li>
+            </li>            
 
             <li class="icConfig">
                 <a href="../View/config.php">
@@ -100,11 +117,21 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
     </nav>
 
     <form action="" method="POST">
-        <fieldset>
-            <center>
+        <center>
+            <fieldset class="everyEmprise">
                 <div class="dvtudo">
 
-                    <h1>Titulo</h1>
+                    <h1>Aluguel</h1>
+                    
+                    <div class="dvCliente">
+                        <label for="">Cliente: </label>
+                        <input type="text" pattern="[A-Za-z]+" value="<?php echo $nome?>" readonly>
+                    </div>
+
+                    <div>
+                        <label for="">Telefone: </label>
+                        <input type="text" pattern="[A-Za-z]+" value="<?php echo $telefone?>" readonly>
+                    </div>
 
                     <div class="dvjmesa">
                         <label>Jogo de mesas:</label>
@@ -130,13 +157,21 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
                         <label > Pula - Pula:</label>
                         <input type="checkbox" name="ckbpula" <?php echo ($inst->getPula()) ? 'checked' : '';?>">
                     </div>
-
-                    <div class="dvbtn">
+                    
+                <div class="valor">
+                    <label for="">Valor Total:</label>
+                    <input type="text" class="edtTotal" name="edtValor" value="<?php echo $inst->getValor();?>">
+                </div>
+            </fieldset>
+        </center>          
+        
+                <div class="dvbtn">
+                    <center>
                         <input type="submit" value="Adicionar" class="btnadd" name="btn">
                         <input type="submit" value="cancelar" class="btncancel" name="btn">
-                    </div>
-                </div>
-            </center>            
-        </fieldset> 
+                    </center>
+                </div>           
+            </div>
+    </form>
 </body>
 </html>

@@ -11,7 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../Style/principal.css">
+    <link rel="stylesheet" href="../Style/list.css">
     <title>Principal</title>
 </head>
 <body>
@@ -19,35 +19,42 @@ session_start();
 <nav class="nvmenu">
         <ul class="ulgeral">
             <li class="icPrinc">
-                <a href="../View/principal.php">
+                <a href="../View/principal.php" class="icon">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Principal</span>
                 </a>                
             </li>
 
             <li class="icList">
-                <a href="../View/list.php">
+                <a href="../View/list.php" class="icon">
                     <i class="fas fa-solid fa-list"></i>
                     <span class="nav-item">Lista</span>
                 </a>                
             </li>
+
+            <li class="icPerson">
+                <a href="../View/person.php" class="icon">
+                <i class="fas fa-solid fa-id-card"></i>
+                    <span class="nav-item">Cliente</span>
+                </a>                
+            </li>
             
-            <li class="icAdd">
-                <a href="../View/newOrder.php">
+            <li class="icOrder">
+                <a href="../View/clientList.php" class="icon">
                     <i class=" fas fa-solid fa-plus"></i>
                     <span class="nav-item">Novo aluguel</span>
                 </a>                
-            </li>
+            </li>             
 
             <li class="icConfig">
-                <a href="../View/config.php">
+                <a href="../View/config.php" class="icon">
                     <i class="fas fa-solid fa-gear"></i>
                     <span class="nav-item">Configuração</span>
                 </a>                
             </li>
 
             <li class="icout">
-                <a href="../index.php">
+                <a href="../index.php" class="icon">
                     <i class="fas fa-solid fa-door-open"></i>
                     <span class="nav-item">Sair</span>
                 </a>                

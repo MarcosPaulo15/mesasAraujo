@@ -29,7 +29,7 @@ nav{
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 
-a{
+.icon{
     position: relative;
     color: rgb(85, 83, 83);
     font-size: 14px;
@@ -62,7 +62,7 @@ a{
     margin-left: 10px;
 }
 
-a:hover{
+.icon:hover{
     background: #eee;
 }
 
@@ -142,4 +142,17 @@ nav:hover{
  .dvsearch{
     margin-bottom: 15%;
     margin-top: 15%;
+ }
+
+ .icoEye{
+   position: relative;
+    color: rgb(85, 83, 83);
+    font-size: 14px;
+    display: table;
+    width: min-content;
+    padding: 10px;
+ }
+ 
+ .icoEye:hover{
+   background-color: rgba(255, 255, 255, 0.247);
  }

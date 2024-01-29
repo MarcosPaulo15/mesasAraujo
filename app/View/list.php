@@ -20,38 +20,45 @@ session_start();
 </head>
 <body>
 
-    <nav class="nvmenu">
+<nav class="nvmenu">
         <ul class="ulgeral">
             <li class="icPrinc">
-                <a href="../View/principal.php">
+                <a href="../View/principal.php" class="icon">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Principal</span>
                 </a>                
             </li>
 
             <li class="icList">
-                <a href="../View/list.php">
+                <a href="../View/list.php" class="icon">
                     <i class="fas fa-solid fa-list"></i>
                     <span class="nav-item">Lista</span>
                 </a>                
             </li>
+
+            <li class="icPerson">
+                <a href="../View/person.php" class="icon">
+                <i class="fas fa-solid fa-id-card"></i>
+                    <span class="nav-item">Cliente</span>
+                </a>                
+            </li>
             
-            <li class="icAdd">
-                <a href="../View/newOrder.php">
+            <li class="icOrder">
+                <a href="../View/clientList.php" class="icon">
                     <i class=" fas fa-solid fa-plus"></i>
                     <span class="nav-item">Novo aluguel</span>
                 </a>                
-            </li>
+            </li>             
 
             <li class="icConfig">
-                <a href="../View/config.php">
+                <a href="../View/config.php" class="icon">
                     <i class="fas fa-solid fa-gear"></i>
                     <span class="nav-item">Configuração</span>
                 </a>                
             </li>
 
             <li class="icout">
-                <a href="../index.php">
+                <a href="../index.php" class="icon">
                     <i class="fas fa-solid fa-door-open"></i>
                     <span class="nav-item">Sair</span>
                 </a>                
@@ -90,7 +97,7 @@ session_start();
                     $notes["data"] = $note['DATA'];      
             ?>
             <tr>
-                <td><?php echo $notes['id']; ?></td>
+                <td><a href="../View/viewOrder.php?id=<?php echo $notes['id'];?>" class="icoEye"><i class="fa-solid fa-eye"></i></a></td>
                 <td><?php echo $notes['jogo']; ?></td>
                 <td><?php echo $notes['mesa']; ?></td>
                 <td><?php echo $notes['cadeira']; ?></td>

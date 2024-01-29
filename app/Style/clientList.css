@@ -13,12 +13,11 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40vh;
     margin: 0;
 }
 
 nav{
-    position:absolute;
+    position:fixed;
     top: 0;
     bottom: 0;
     background: rgb(211, 208, 208);
@@ -64,7 +63,7 @@ a{
 }
 
 a:hover{
-    background: #eee;
+    background: #c0bbbb;
 }
 
 nav:hover{
@@ -74,23 +73,27 @@ nav:hover{
 
 
 /*----------------- table -------------------------*/
+ h1{
+    margin-bottom: 15px;
+ }
  table th {
     background-color: #5f5858;
     font-size: 18px;
     color: white;
     padding: 10px;
-    
  }
  
  table td {
     border-bottom: 1px solid #333;
     color: #000;
     text-align: center;
+    padding: 10px;
  }
  
  
  .cabecalho {
     grid-area: cabecalho;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -137,4 +140,36 @@ nav:hover{
 
  .btnexcluir:hover{
     background-color: rgba(255, 255, 255, 0.247);
+ }
+
+ .dvsearch{
+    margin-bottom: 15%;
+    margin-top: 15%;
+ }
+
+ .btnCheck{
+    background-color: rgb(177, 160, 160);
+    border-color: rgb(177, 160, 160);;
+ }
+
+ .btnCheck:hover{
+    background-color: #ffffffbe;
+ }
+
+ .dvSearch{
+
+    margin-bottom: 20px;
+ }
+
+ .edtSearch{
+    width: 250px;
+ }
+
+ .btnSearch:hover{
+    background-color: white;
+ }
+
+ .btnSelect{
+   width: 10px;
+   height: min-content;
  }

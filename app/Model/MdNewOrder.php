@@ -16,6 +16,10 @@ class MdNewOrder{
 
     private $data;
 
+    private $codigoCliente;
+
+    private $valor;
+
     public function getId(){
         return $this->id;
     }
@@ -63,6 +67,22 @@ class MdNewOrder{
     public function setData($data){
         $this->data = $data;
     }
+
+    public function getCodCliente(){
+        return $this->codigoCliente;
+    }
+    
+    public function setCodCliente($codCli){
+        $this->codigoCliente = $codCli;
+    }
+
+    public function getValor(){
+        return $this->valor;
+    }
+
+    public function setValor($valor){
+        $this->valor = $valor;
+    }
     
     public function insert(){
 
@@ -71,8 +91,10 @@ class MdNewOrder{
         $valCadeira = $this->getCadeira();
         $valPula = $this->getPula();
         $valData = $this->getData();
+        $codCliente = $this->getCodCliente();
+        $valor = $this->getValor();
 
-        $query = "INSERT INTO PEDIDO VALUES(NULL, $valJogo, $valMesa, $valCadeira, $valPula, '$valData')";
+        $query = "INSERT INTO PEDIDO VALUES(NULL, $valJogo, $valMesa, $valCadeira, $valPula, '$valData', $codCliente, '$valor,00')";
         $instance = new configClass();
 
         $valInse = $instance->insert($query);
@@ -91,6 +113,7 @@ class MdNewOrder{
         $this->setMesa($note['MESA']);
         $this->setPula($note['PULA']);
         $this->setData($note['DATA']);
+        $this->setData($note['VALOR']);
     }
 
     public function Update($id){
@@ -108,7 +131,7 @@ class MdNewOrder{
         $valInse = $instance->update($query);
         
         return $valInse;
-    } 
+    }
     
     public function list($data){
 
@@ -126,4 +149,27 @@ class MdNewOrder{
         $result = mysqli_query($config->connection(), $query);
         return $result;
     }    
+
+    public function completeOrder($id){
+        $config = new configClass();
+        $query = "SELECT ped.JOGO,
+        ped.CADEIRA,
+        ped.MESA,
+        ped.PULA,
+        DATE_FORMAT(DATA, '%d/%m/%Y') as 'DATA',
+        ped.VALOR,
+        usu.NOME,
+        usu.TELEFONE,
+        USU.CEP,
+        USU.LOGRADOURO,
+        USU.BAIRRO,
+        USU.NUMERO FROM PEDIDO ped 
+        LEFT JOIN CLIENTE usu ON(usu.ID = ped.CODIGO_CLIENTE)
+        WHERE PED.ID = $id";
+        $result = mysqli_query($config->connection(), $query);
+        return $result;
+    }   
+    
+//
+    
 }

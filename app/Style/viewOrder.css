@@ -72,69 +72,13 @@ nav:hover{
     transition: all 0.5s ease;
 }
 
-
-/*----------------- table -------------------------*/
- table th {
-    background-color: #5f5858;
-    font-size: 18px;
-    color: white;
-    padding: 10px;
-    
- }
- 
- table td {
-    border-bottom: 1px solid #333;
-    color: #000;
-    text-align: center;
- }
- 
- 
- .cabecalho {
-    grid-area: cabecalho;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 10px;
+fieldset{
+    margin-top: 120%;
+    padding: 20px;
     z-index: 1;
     box-shadow: 0px 4px 9px -2px rgba(0,0,0,0.75);
- }
- 
- .cabecalho > h1 {
-    margin: 0px;
-    font-weight: 300;
-    font-size: 2.8rem;
- }
- 
- .cabecalho > h2 {
-    margin: 0px;
-    font-weight: 200;
-    font-size: 1.6rem;
- }
+}
 
- .btneditar{
-    position: relative;
-    color: rgb(85, 83, 83);
-    font-size: 14px;
-    display: table;
-    width: 50px;
-    padding: 8px;
-    color: blue;
- }
- .btneditar:hover{
-    background-color: rgba(255, 255, 255, 0.247);
- }
-
- .btnexcluir{
-    position: relative;
-    color: rgb(85, 83, 83);
-    font-size: 14px;
-    display: table;
-    width: 50px;
-    padding: 8px;
-    color: blue;
- }
-
- .btnexcluir:hover{
-    background-color: rgba(255, 255, 255, 0.247);
- }
+div{
+    padding: 10px;
+}

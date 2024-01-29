@@ -1,35 +1,50 @@
 <?php
-require_once('C:\xampp\htdocs\mesas araujo\app\helper\configClass.php');
-require_once('C:\xampp\htdocs\mesas araujo\app\Model\MdNewOrder.php');
+require_once('..\helper\configClass.php');
+require_once('..\Model\MdNewOrder.php');
+require_once('..\Model\MdClient.php');
+$inst = new MdNewOrder();
+$teste = new MdClient();
+
+$idClient = $_GET['id'];
+
+$client = [];
+
+$result = $teste->clientSel($idClient);
+$note= mysqli_fetch_array($result);
+$clientName = isset($note['NOME']) ? $note['NOME'] : "";
+$telephone = isset($note['TELEFONE']) ? $note['TELEFONE'] : "";
 
 if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcadeira'])){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if(isset($_POST["btn"])){
-            $btn = $_POST["btn"];
+            $btn = $_POST["btn"];            
             
-            $inst = new MdNewOrder();
-
             $inst->setJogo(isset($_POST['edtjogo']) ? $_POST['edtjogo'] : 'NULL');
             $inst->setMesa(isset($_POST['edtmesa']) ? $_POST['edtmesa'] : 'NULL');
             $inst->setCadeira(isset($_POST['edtcadeira']) ? $_POST['edtcadeira'] : 'NULL');
             $inst->setPula(isset($_POST['ckbpula']) ? 1 : 0);
             $inst->setData(isset($_POST['edtdata']) ? $_POST['edtdata'] : 'NULL');
-            
+            $inst->setCodCliente($idClient);
+            $inst->setValor(isset($_POST['edtValor']) ? $_POST['edtValor'] : 0);
             
             switch($btn){
                 case "Adicionar":
+                    echo $_POST['edtValor'];
                     if(strlen($_POST['edtjogo']) == 0 &&
                     strlen($_POST['edtmesa']) == 0 &&
                     strlen($_POST['edtcadeira']) == 0){
                         echo 'todos os campos vazios, favor preencher pelo menos um campo!';
+                    }
+                    else if(strlen(isset($_POST['edtValor'])) == 0){
+                        echo '<script>alert("Favor inserir o valor total do pedido!");</script>';
                     }
                     else{
 
                         $valInse = $inst->insert();
             
                         if($valInse){
-                            header ('location: principal.php');
+                           header ('location: principal.php');
                         }
                         else{
                             echo 'erro ao inserir';
@@ -73,13 +88,20 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
                     <span class="nav-item">Lista</span>
                 </a>                
             </li>
+
+            <li class="icPerson">
+                <a href="../View/person.php">
+                <i class="fas fa-solid fa-id-card"></i>
+                    <span class="nav-item">Cliente</span>
+                </a>                
+            </li>
             
-            <li class="icAdd">
-                <a href="../View/newOrder.php">
+            <li class="icOrder">
+                <a href="../View/clientList.php">
                     <i class=" fas fa-solid fa-plus"></i>
                     <span class="nav-item">Novo aluguel</span>
                 </a>                
-            </li>
+            </li>            
 
             <li class="icConfig">
                 <a href="../View/config.php">
@@ -98,11 +120,21 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
     </nav>
 
     <form action="" method="POST">
-        <fieldset>
-            <center>
+        <center>
+            <fieldset class="everyEmprise">
                 <div class="dvtudo">
 
-                    <h1>Titulo</h1>
+                    <h1>Aluguel</h1>
+                    
+                    <div class="dvCliente">
+                        <label for="">Cliente: </label>
+                        <input type="text" pattern="[A-Za-z]+" value="<?php echo $clientName?>" readonly>
+                    </div>
+
+                    <div>
+                        <label for="">Telefone: </label>
+                        <input type="text" pattern="[A-Za-z]+" value="<?php echo $telephone?>" readonly>
+                    </div>
 
                     <div class="dvjmesa">
                         <label>Jogo de mesas:</label>
@@ -128,13 +160,23 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
                         <label > Pula - Pula:</label>
                         <input type="checkbox" name="ckbpula">
                     </div>
-
-                    <div class="dvbtn">
+                </div>
+                    
+                <div class="valor">
+                    <label for="">Valor Total:</label>
+                    <input type="number" class="edtTotal" name="edtValor">
+                </div>
+            </fieldset>
+        </center>          
+        
+                <div class="dvbtn">
+                    <center>
                         <input type="submit" value="Adicionar" class="btnadd" name="btn">
                         <input type="submit" value="cancelar" class="btncancel" name="btn">
-                    </div>
-                </div>
-            </center>            
-        </fieldset>    
+                    </center>
+                </div>           
+            </div>
+    </form>
 </body>
 </html>
+

@@ -19,7 +19,7 @@ body{
 }
 
 nav{
-    position:absolute;
+    position:fixed;
     top: 0;
     bottom: 0;
     background: rgb(211, 208, 208);
@@ -108,6 +108,7 @@ fieldset{
 
 .dvbtn{
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -171,4 +172,26 @@ table {
     margin: 0px;
     font-weight: 200;
     font-size: 1.6rem;
+ }
+ .everyEmprise{
+    margin-top: 120px;
+ }
+
+ .valor{
+    margin-top: 25px;
+ }
+
+ .lblname{
+    margin-bottom: 20px;
+    margin-top: 25px;
+ }
+
+ .btnsearch{
+    height: min-content;
+    width: min-content;
+ }
+
+ .dvCliente{
+    margin-top: 10px;
+    margin-bottom: 10px;
  }

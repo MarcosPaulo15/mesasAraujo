@@ -17,44 +17,51 @@ $note = [];
         <title>Document</title>
     </head>
     <body>
-        <nav class="nvmenu">
-            <ul class="ulgeral">
-                <li class="icPrinc">
-                    <a href="../View/principal.php">
-                        <i class="fas fa-home"></i>
-                        <span class="nav-item">Principal</span>
-                    </a>                
-                </li>
+    <nav class="nvmenu">
+        <ul class="ulgeral">
+            <li class="icPrinc">
+                <a href="../View/principal.php">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Principal</span>
+                </a>                
+            </li>
 
-                <li class="icList">
-                    <a href="../View/list.php">
-                        <i class="fas fa-solid fa-list"></i>
-                        <span class="nav-item">Lista</span>
-                    </a>                
-                </li>
-                
-                <li class="icAdd">
-                    <a href="../View/newOrder.php">
-                        <i class=" fas fa-solid fa-plus"></i>
-                        <span class="nav-item">Novo aluguel</span>
-                    </a>                
-                </li>
+            <li class="icList">
+                <a href="../View/list.php">
+                    <i class="fas fa-solid fa-list"></i>
+                    <span class="nav-item">Lista</span>
+                </a>                
+            </li>
 
-                <li class="icAdd">
-                    <a href="../View/config.php">
-                        <i class="fas fa-solid fa-gear"></i>
-                        <span class="nav-item">Configuração</span>
-                    </a>                
-                </li>
+            <li class="icPerson">
+                <a href="../View/person.php">
+                <i class="fas fa-solid fa-id-card"></i>
+                    <span class="nav-item">Cliente</span>
+                </a>                
+            </li>
+            
+            <li class="icOrder">
+                <a href="../View/clientList.php">
+                    <i class=" fas fa-solid fa-plus"></i>
+                    <span class="nav-item">Novo aluguel</span>
+                </a>                
+            </li>           
 
-                <li class="icout">
-                    <a href="../index.php">
-                        <i class="fas fa-solid fa-door-open"></i>
-                        <span class="nav-item">Sair</span>
-                    </a>                
-                </li>
-            </ul>
-        </nav>
+            <li class="icConfig">
+                <a href="../View/config.php">
+                    <i class="fas fa-solid fa-gear"></i>
+                    <span class="nav-item">Configuração</span>
+                </a>                
+            </li>
+
+            <li class="icout">
+                <a href="../index.php">
+                    <i class="fas fa-solid fa-door-open"></i>
+                    <span class="nav-item">Sair</span>
+                </a>                
+            </li>
+        </ul>
+    </nav>
         <form action="" method="POST">
             <table>
                 <th>
