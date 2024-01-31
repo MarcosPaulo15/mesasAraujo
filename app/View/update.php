@@ -89,7 +89,7 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
             <li class="icPerson">
                 <a href="../View/person.php">
                 <i class="fas fa-solid fa-id-card"></i>
-                    <span class="nav-item">Cliente</span>
+                    <span class="nav-item">Novo Cliente</span>
                 </a>                
             </li>
             
@@ -155,7 +155,7 @@ if(isset($_POST['edtjogo']) || isset($_POST['edtmesa']) || isset($_POST['edtcade
 
                     <div>
                         <label > Pula - Pula:</label>
-                        <input type="checkbox" name="ckbpula" <?php echo ($inst->getPula()) ? 'checked' : '';?>">
+                        <input type="checkbox" name="ckbpula" <?php echo ($inst->getPula()) ? 'checked' : '';?>>
                     </div>
                     
                 <div class="valor">

@@ -18,6 +18,16 @@
     $rua = $note['LOGRADOURO'];
     $bairro = $note['BAIRRO'];
     $num = $note['NUMERO'];
+
+    if(isset($_POST['btn'])){
+        $btn = $_POST["btn"];
+    
+        switch($btn){
+            case "voltar":
+                header('location: ../View/list.php');
+            break;
+        }
+    }
     
 ?>
 <!DOCTYPE html>
@@ -50,7 +60,7 @@
             <li class="icPerson">
                 <a href="../View/person.php">
                 <i class="fas fa-solid fa-id-card"></i>
-                    <span class="nav-item">Cliente</span>
+                    <span class="nav-item">Novo Cliente</span>
                 </a>                
             </li>
             
@@ -145,7 +155,7 @@
 
                         if($valor > 0 ){
 
-                            echo "<div> <label>Valor total: $valor</label> </div>";
+                            echo "<div> <label>Valor total: R$ $valor</label> </div>";
                         }
                     ?>
                 </div>
@@ -163,14 +173,3 @@
 </body>
 </html>
 
-<?php
-
-if(isset($_POST['btn'])){
-    $btn = $_POST["btn"];
-
-    switch($btn){
-        case "voltar":
-            header('location: ../View/list.php');
-        break;
-    }
-}

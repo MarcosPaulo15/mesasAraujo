@@ -39,7 +39,7 @@ session_start();
             <li class="icPerson">
                 <a href="../View/person.php" class="icon">
                 <i class="fas fa-solid fa-id-card"></i>
-                    <span class="nav-item">Cliente</span>
+                    <span class="nav-item">Novo Cliente</span>
                 </a>                
             </li>
             

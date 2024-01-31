@@ -1,6 +1,5 @@
 <?php
-session_start();
-    require_once('C:\xampp\htdocs\mesas araujo\app\helper\config.php');
+    require_once('..\helper\config.php');
     $query = "SELECT ID, JOGO, MESA, CADEIRA, DATE_FORMAT(DATA, '%d/%m/%Y') as 'DATA', PULA FROM PEDIDO WHERE DATA = CURRENT_DATE();";
     $result = mysqli_query($con, $query);
     $notes = [];
@@ -35,7 +34,7 @@ session_start();
             <li class="icPerson">
                 <a href="../View/person.php" class="icon">
                 <i class="fas fa-solid fa-id-card"></i>
-                    <span class="nav-item">Cliente</span>
+                    <span class="nav-item">Novo Cliente</span>
                 </a>                
             </li>
             
@@ -82,14 +81,12 @@ session_start();
                     $notes["data"] = $note['DATA'];      
             ?>
             <tr>
-                <td><?php echo '-'; ?></td>
+                <td><a href="../View/viewOrder.php?id=<?php echo $notes['id'];?>" class="icoEye"><i class="fa-solid fa-eye"></i></a></td>
                 <td><?php echo $notes['jogo']; ?></td>                
                 <td><?php echo $notes['cadeira']; ?></td>
                 <td><?php echo $notes['mesa']; ?></td>
                 <td><?php echo $notes['pula']; ?></td>
                 <td><?php echo $notes['data']?></td>
-                <td><a href="update.php?id=<?php echo $notes['id'];?>" class="btneditar">Editar</a></td>   
-                <td><a href="delete.php?id=<?php echo $notes['id'];?>" class="btnexcluir">Excluir</a></td>
             </tr>
             <?php }?>
         </table>

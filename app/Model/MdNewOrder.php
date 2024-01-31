@@ -113,7 +113,7 @@ class MdNewOrder{
         $this->setMesa($note['MESA']);
         $this->setPula($note['PULA']);
         $this->setData($note['DATA']);
-        $this->setData($note['VALOR']);
+        $this->setValor($note['VALOR']);
     }
 
     public function Update($id){

@@ -149,4 +149,24 @@ class MdClient{
         $result = mysqli_query($config->connection(), $query);
         return $result;
     }
+
+    public function updateClient($id){
+        $nome = $this->getName();
+        $telefone = $this->getTelefone();
+        $cep = $this->getCep();
+        $rua = $this->getEnd();
+        $bairro = $this->getBairro();
+        $num = $this->getNumero();
+        $query = "UPDATE CLIENTE SET NOME = '$nome', 
+        TELEFONE = '$telefone', 
+        CEP = $cep, 
+        LOGRADOURO = '$rua', 
+        BAIRRO = '$bairro', 
+        NUMERO = $num WHERE ID = $id;";
+
+        $instance = new configClass();
+        $valInse = $instance->insert($query);
+
+        return $valInse;
+    }
 }

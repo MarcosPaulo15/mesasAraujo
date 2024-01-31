@@ -2,6 +2,16 @@
 require_once('..\helper\configClass.php');
 require_once('C:\xampp\htdocs\mesas araujo\app\Model\MdClient.php');
 $inst = new MdClient();
+$id = $_GET['id'];
+$loadCli = $inst->clientSel($id);
+$teste = mysqli_fetch_array($loadCli);
+
+    $cep = $teste['CEP'];
+    $nome = $teste['NOME'];
+    $rua = $teste['LOGRADOURO'];
+    $bairro = $teste['BAIRRO'];
+    $numero = $teste['NUMERO'];
+    $telefone = $teste['TELEFONE'];
 
 
 if(isset($_POST['edtNumber']) || isset($_POST['edtBairro']) || isset($_POST['edtRua']) || isset($_POST['lblcep'])
@@ -45,7 +55,7 @@ if(isset($_POST['edtNumber']) || isset($_POST['edtBairro']) || isset($_POST['edt
                         $inst->setBairro(isset($_POST['edtbairro']) ? $_POST['edtbairro'] : "");
                         $inst->setNumero(isset($_POST['edtNumber']) ? $_POST['edtNumber'] : "");
 
-                        $valInse = $inst->registerClient();
+                        $valInse = $inst->updateClient($id);
             
                         if($valInse){
                             echo '<script>alert("Cliente inserido com sucesso!");</script>';
@@ -151,38 +161,38 @@ if(isset($_POST['edtNumber']) || isset($_POST['edtBairro']) || isset($_POST['edt
                     <Label class="tituloPes">Dados Pessoais</Label>
 
                     <div class="lblname">
-                        <input type="text" placeholder="Nome" class="edtName" name="edtName" value="<?php echo isset($_POST['edtName']) ? $_POST['edtName'] : ""; ?>">
+                        <input type="text" placeholder="Nome" class="edtName" name="edtName" value="<?php echo $nome; ?>">
                     </div>
 
                     <div class="lblname">
-                        <input type="tel" placeholder="Telefone"  class="edtTel" name="edtTel" value="<?php echo isset($_POST['edtTel']) ? $_POST['edtTel'] : ""?>">
+                        <input type="tel" placeholder="Telefone"  class="edtTel" name="edtTel" value="<?php echo $telefone?>">
                     </div>
 
                     <div>
-                        <input type="text" placeholder="CEP" name="lblcep" class="lblcep" value="<?php echo isset($cep) ? $cep : "";?>" maxlength="8">
+                        <input type="text" placeholder="CEP" name="lblcep" class="lblcep" value="<?php echo $cep;?>" maxlength="8">
                         <button type="submit" value="cepi" name="btn">
                             <i class="fa-solid fa-magnifying-glass" class="btnsearch"></i> 
                         </button>
                     </div>
                     
                     <div>
-                        <input type="text" value="<?php echo isset($rua) ? $rua : "";?>" name="edtRua" placeholder="Endereço">
+                        <input type="text" value="<?php echo $rua;?>" name="edtRua" placeholder="Endereço">
                     </div>
                     <br>
                     <div>
-                        <input type="text" value="<?php echo isset($bairro) ? $bairro : "";?>" name="edtbairro" placeholder="Bairro">
+                        <input type="text" value="<?php echo $bairro;?>" name="edtbairro" placeholder="Bairro">
                         
                     </div>
                     <br>
                     <div>
-                    <input type="tel" placeholder="Numero" class="edtNumber" name="edtNumber">
+                    <input type="tel" placeholder="Numero" class="edtNumber" name="edtNumber" value="<?php echo $numero;?>">
                     </div>
                 </fieldset>       
             </center>
             <div class="dvbtn">
                 <center>
-                    <input type="submit" value="Adicionar" class="btnadd" name="btn">
-                    <input type="submit" value="cancelar" class="btncancel" name="btn">
+                    <input type="submit" value="Atualizar" class="btnadd" name="btn">
+                    <input type="submit" value="Cancelar" class="btncancel" name="btn">
                 </center>
             </div>           
         </div>

@@ -45,7 +45,7 @@ session_start();
             <li class="icPerson">
                 <a href="../View/person.php">
                 <i class="fas fa-solid fa-id-card"></i>
-                    <span class="nav-item">Cliente</span>
+                    <span class="nav-item">Novo Cliente</span>
                 </a>                
             </li>
             
@@ -111,8 +111,8 @@ session_start();
                     <td><?php echo $notes['telefone']; ?></td>
                     <td><?php echo $notes['logradouro']; ?></td>
                     <td><?php echo $notes['bairro']?></td>
-                    <td><a href="update.php?id=<?php echo $notes['id'];?>" class="btneditar">Editar</a></td>   
-                    <td><a href="delete.php?id=<?php echo $notes['id'];?>" class="btnexcluir">Excluir</a></td>
+                    <td><a href="../View/updateClient.php?id=<?php echo $notes['id'];?>" class="btneditar">Editar</a></td>   
+                    <td><a href="../View/deleteCli.php?id=<?php echo $notes['id'];?>" class="btnexcluir">Excluir</a></td>
                 </tr>
             <?php }?>
         </table>
